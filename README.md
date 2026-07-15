@@ -51,6 +51,17 @@ docker build --build-arg APP_VERSION=2.0.0 -t argocd-demo-app:2.0.0 .
 docker run --rm -p 8080:8080 argocd-demo-app:2.0.0
 ```
 
+## Publish image
+
+GitHub Actions builds and pushes `ghcr.io/orenamir2/argocd-demo` on pushes to `main`,
+version tags, and manual workflow runs.
+
+- Pushes to `main` publish `1.0.0` and `sha-<commit>`.
+- Tags like `v2.0.0` publish `2.0.0` and `sha-<commit>`.
+- Manual runs use the supplied `app_version` input.
+
+The workflow uses GitHub's built-in `GITHUB_TOKEN` with `packages: write` permission.
+
 ## Test
 
 ```bash
